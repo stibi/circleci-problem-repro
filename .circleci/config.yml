@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  eks-helpers: eks-helper/eks-helper@dev:1.0.10
+  eks-helpers: eks-helper/eks-helper@1.0.10
 
 workflows:
   test:
