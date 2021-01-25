@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  eks-helpers: eks-helper/eks-helper@1.0.9
+
+workflows:
+  test:
+    jobs:
+      - eks-helpers/obtain_helm_chart:
+          name: obtain_helm_chart_test
+          aws_access_key_id: ${AWS_ACCESS_KEY_ID}
+          aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+          aws_region: eu-west-1
+          helm_chart_version: 1.11.2
+          helm_chart_name: prometheus-node-exporter
+          helm_s3_bucket: circleci-problem-repro
+
