@@ -17,6 +17,7 @@ workflows:
           helm_s3_bucket: s3://circleci-problem-repro
 
       - eks-helpers/helm_deploy_node_simple:
+          requires: ["obtain_helm_chart_test"]
           name: helm_deploy_test
           aws_region: eu-west-1
           aws_access_key_id: ${AWS_ACCESS_KEY_ID}
