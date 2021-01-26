@@ -16,3 +16,23 @@ workflows:
           helm_chart_name: prometheus-node-exporter
           helm_s3_bucket: s3://circleci-problem-repro
 
+      - eks-helpers/helm_deploy_node_simple:
+          name: helm_deploy_test
+          aws_region: eu-west-1
+          aws_access_key_id: ${AWS_ACCESS_KEY_ID}
+          aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+          aws_assume_role_arn: arn:aws:iam::909130508899:role/circleci-problem-repro
+          aws_account_id: 909130508899
+          app_name: test-app
+          values_path: helm/values/test/main.yaml
+          secrets_path: /tmp/out/secret.yaml
+          docker_image_name: test-app
+          docker_image_tag: $CIRCLE_SHA1
+          cluster_name: test-cluster
+          helm_chart_name: prometheus-node-exporter
+          helm_chart_version: 1.11.2
+          helm_release_suffix: foo
+          helm_release_prefix: bar
+          dry_run: false
+          preview: true
+
